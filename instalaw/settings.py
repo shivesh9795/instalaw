@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lawyer',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'djcelery',
+    'djcelery_email',
+
+    'rest_framework'
 
 ]
 
@@ -134,3 +138,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+
+
+
+# CELERY_EMAIL_TASK_CONFIG = {
+#     'queue' : 'email',
+#     'rate_limit' : '50/m',  # * CELERY_EMAIL_CHUNK_SIZE (default: 10)
+# }
+
+
+
+
+# CELERY_EMAIL_TASK_CONFIG = {
+#     'name': 'djcelery_email_send',
+#     'ignore_result': True,
+# }
+CELERY_BROKER_URL = 'amqp://username:password@localhost:5672/vhost'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'shivesh9795@gmai.com'
+EMAIL_HOST_PASSWORD = 'srivastava@123'
+EMAIL_PORT = 2525
+
+
+# CSRF_COOKIE_SECURE = True
